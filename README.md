@@ -6,7 +6,6 @@
 
 <p>Клонируйте репо, устанавливайте все зависимости в папках client/server, в папке server пропишите команду npm run dev</p>
 
-<img src="https://ibb.co/d5NC5vk" alt="#">
 <a href="https://ibb.co/d5NC5vk"><img src="https://i.ibb.co/kSLbSTq/React-App.png" alt="React-App" border="0"></a>
 <h1>Приложение</h1>
 
