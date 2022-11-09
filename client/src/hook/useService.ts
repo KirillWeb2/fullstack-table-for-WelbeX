@@ -1,44 +1,44 @@
-import { ISuccess } from './../types/Service';
+import React from "react";
+
 import axios from "../axios";
-import { useCallback, useEffect, useState } from "react";
-import { IRequest } from "../types/Service";
+import { IRequest, ISuccess } from "../types/Service";
 import { ITableData } from "../types/Table";
+import { generateParams } from "../utils";
 
-export const url = "http://localhost:4444"
-
-const generateParams = ({ limit, page, searchColumn, sort, sortColumn, type, value }: IRequest): string => {
-    return `/api?limit=${limit}&page=${page}&sort=${sort}&sortColumn=${sortColumn}&searchColumn=${searchColumn}&type=${type}&value=${value}`
-}
+export const url = "http://localhost:4444";
 
 export const useService = (data: IRequest) => {
-    const [max, setMax] = useState<number>(0);
-    const [rows, setRows] = useState<ITableData[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [max, setMax] = React.useState<number>(0);
+  const [rows, setRows] = React.useState<ITableData[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-    const request = useCallback(async () => {
-        setIsLoading(true)
+  const request = React.useCallback(async () => {
+    try {
+      setIsLoading(true);
 
-        const response = await axios.get<ISuccess>(generateParams(data))
+      const response = await axios.get<ISuccess>(generateParams(data));
 
-        if (response.data) {
-            setMax(response.data.max)
-            setRows(response.data.rows)
-        }
+      if (response.data) {
+        setMax(response.data.max);
+        setRows(response.data.rows);
+      }
 
-        setIsLoading(false)
-    }, [data])
-
-
-    useEffect(() => {
-        request()
-    }, [data, request]);
-
-    return {
-        // столбцы 
-        rows,
-        // загрузка данных
-        isLoading,
-        // Максимальное число столбцов
-        max
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
     }
+  }, [data]);
+
+  React.useEffect(() => {
+    request();
+  }, [data, request]);
+
+  return {
+    // столбцы
+    rows,
+    // загрузка данных
+    isLoading,
+    // Максимальное число столбцов
+    max,
+  };
 };

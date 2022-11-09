@@ -1,19 +1,20 @@
-import React, { FC, memo } from 'react';
-import { ITableData } from '../../types/Table';
+import React from "react";
+
+import { ITableData } from "../../types/Table";
 
 interface ITableItemComponent {
-    item: ITableData
-};
+  item: ITableData;
+}
 
-const TableItem: FC<ITableItemComponent> = ({ item }) => {
+export const TableItem: React.FC<ITableItemComponent> = React.memo(
+  ({ item }) => {
     return (
-        <tr>
-            <td>{item.name}</td>
-            <td>{item.quantity}</td>
-            <td>{item.distance}</td>
-            <td>{item.date.split('T')[0]}</td>
-        </tr>
+      <tr>
+        <td>{item.name}</td>
+        <td>{item.quantity}</td>
+        <td>{item.distance}</td>
+        <td>{item.date.split("T")[0]}</td>
+      </tr>
     );
-};
-
-export default memo(TableItem);
+  }
+);

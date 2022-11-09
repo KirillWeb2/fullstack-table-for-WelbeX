@@ -1,13 +1,13 @@
-import React, { FC, useState } from 'react';
-import Filtering from './components/filtering/Filtering';
-import Pagination from './components/pagination/Pagination';
-import Table from './components/table/Table';
-import { ServiceContext } from './context/Service';
-import { useService } from './hook/useService';
-import { IRequest } from './types/Service';
+import React, { FC, useState } from "react";
 
+import { Filtering } from "./components/filtering/Filtering";
+import { Pagination } from "./components/pagination/Pagination";
+import { Table } from "./components/table/Table";
+import { ServiceContext } from "./context/Service";
+import { useService } from "./hook/useService";
+import { IRequest } from "./types/Service";
 
-const App: FC = () => {
+export const App: FC = () => {
   const [query, setQuery] = useState<IRequest>({
     limit: 10,
     page: 1,
@@ -15,8 +15,8 @@ const App: FC = () => {
     sort: "",
     sortColumn: "",
     type: "",
-    value: ""
-  })
+    value: "",
+  });
 
   // хук, отправляющий запрос каждый раз, когда меняется query
   const { isLoading, max, rows } = useService(query);
@@ -30,6 +30,4 @@ const App: FC = () => {
       </ServiceContext.Provider>
     </div>
   );
-}
-
-export default App;
+};

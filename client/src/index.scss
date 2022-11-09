@@ -55,11 +55,10 @@ body {
   background: #f3f3f3;
 }
 
-.buttons {
+.pagination {
   display: flex;
   justify-content: space-between;
 }
-
 
 
 // pagination
@@ -84,7 +83,7 @@ body {
 // filtering
 .filtering {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 
   margin-bottom: 20px;

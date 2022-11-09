@@ -1,5 +1,6 @@
-import { createContext } from "react";
-import { IRequest } from "../types/Service";
+import { createContext } from 'react';
+
+import { IRequest } from '../types/Service';
 
 export interface IServiceContext {
     query: IRequest
